@@ -1,18 +1,22 @@
 package com.example.cardgame.models;
 
 
+
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.cardgame.R;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Card {
     public String url_Image;
     public String name_Image;
     public Bitmap bitmap;
+    public static ArrayList<Card> cards;
 
     public Card() {
+        cards = new ArrayList<>();
     }
 
     public Card(String url_Image, String name_Image) {
@@ -40,6 +44,14 @@ public class Card {
         Bitmap myBitmap = BitmapFactory.decodeResource(resources, Image_Url);
         return myBitmap;
     }
+    public static ArrayList<Card> loadCards(Card myCard){
 
+            for(int i=0; i<cards.size();i++){
+                if(!myCard.getUrl_Image().equals(cards.get(i).getUrl_Image())){
+                    cards.add(myCard);
+                }
+            }
+            return cards;
+    }
 
 }
