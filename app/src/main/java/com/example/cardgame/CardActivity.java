@@ -24,8 +24,8 @@ public class CardActivity extends AppCompatActivity {
     private int i;
     public Card myCard;
     public ArrayList<Card> myCards;
-    public Button testBtn;
     public String  myPath;
+    public ArrayList<String> getSize = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +39,13 @@ public class CardActivity extends AppCompatActivity {
       //  testBtn = findViewById(R.id.button2);
         NameCard = findViewById(R.id.nameCard);
         ViewCard.setImageBitmap(myCard.getBitmap(getResources(), R.mipmap.card_back_foreground));
-        myPath = myCard.loadCards("classical");
+        myPath = myCard.loadCards("logos");
+        getSize = cards(myPath, i);
         ViewCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 chooseTypeCards(myPath);
+            Toast.makeText(getBaseContext(), ""+ getSize.size(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -74,7 +76,7 @@ public class CardActivity extends AppCompatActivity {
         super.onStart();
         final Random myRandom = new Random();
         //get size of listImage to fix it on random methode next step
-         cards(myPath, myRandom.nextInt(20));
+         cards(myPath, myRandom.nextInt(getSize.size()));
 
     }
 }
