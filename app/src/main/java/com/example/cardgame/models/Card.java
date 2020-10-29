@@ -6,8 +6,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Card {
     public String url_Image;
@@ -44,14 +44,10 @@ public class Card {
         Bitmap myBitmap = BitmapFactory.decodeResource(resources, Image_Url);
         return myBitmap;
     }
-    public static ArrayList<Card> loadCards(Card myCard){
-
-            for(int i=0; i<cards.size();i++){
-                if(!myCard.getUrl_Image().equals(cards.get(i).getUrl_Image())){
-                    cards.add(myCard);
-                }
-            }
-            return cards;
+    public String loadCards(String path){
+       File myImages = new File(path);
+         String mycards = myImages.getPath();
+             return mycards;
     }
 
 }
